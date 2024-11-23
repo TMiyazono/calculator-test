@@ -1,22 +1,30 @@
-document.getElementById('calculator').addEventListener('click', function() {
-  eval('クリックされました');
+document.addEventListener('DOMContentLoaded', () => {
+  const display = document.getElementById('display'),
+        numbers = document.querySelectorAll('.number'),
+        operators = document.querySelectorAll('.operator'),
+        equals = document.querySelector('.equals'),
+        clear = document.querySelector('.clear');
+
+  numbers.forEach(number => {
+    number.addEventListener('click', function() {
+      display.value += this.getAttribute('data-number');
+    });
+  });
+
+  operators.forEach(operator => {
+    operator.addEventListener('click', function() {
+      display.value += this.getAttribute('data-operator');
+    });
+  });
+
+  equals.addEventListener('click', () => {
+      display.value = eval(display.value);
+  });
+
+  clear.addEventListener('click', () => {
+    display.value = '';
+  });
 });
 
-
-('click',function(){
-    if(btn.value == "=") {
-      document.calculator.display.value = eval(document.calculator.display.value);
-    } else if (btn.value == "C") {
-      document.calculator.display.value = "";
-    } else {
-      if (btn.value == "*") {
-        btn.value = "*";
-      } else if (btn.value == "/") {
-        btn.value = "/";
-      }
-      document.calculator.display.value += btn.value;
-      document.calculator.multi_btn.value = "*";
-      document.calculator.div_btn.value = "/";
-    }
-  })
+  
   
